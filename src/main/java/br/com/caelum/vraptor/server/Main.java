@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
         String webappDirLocation = getWebAppDir();
-        new JobController(null);
         //WatchService service = FileSystems.getDefault().newWatchService();
 
         String webXmlLocation = getWebXmlLocation(webappDirLocation);

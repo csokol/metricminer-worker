@@ -5,10 +5,10 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 
 @Resource
-public class JobController {
+public class JobsController {
     private final Result result;
 
-    public JobController(Result result) {
+    public JobsController(Result result) {
         this.result = result;
     }
 

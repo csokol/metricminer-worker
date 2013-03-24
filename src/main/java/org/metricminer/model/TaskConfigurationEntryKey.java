@@ -1,0 +1,5 @@
+package org.metricminer.model;
+
+public enum TaskConfigurationEntryKey {
+    METRIC_FACTORY_CLASS, QUERY_ID, PROJECT_METRIC_FACTORY_CLASS, SECOND_QUERY_RESULT, FIRST_QUERY_RESULT, STATISTICAL_TEST,
+}
