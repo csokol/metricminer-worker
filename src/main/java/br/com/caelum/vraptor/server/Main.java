@@ -11,7 +11,6 @@ public class Main {
         //WatchService service = FileSystems.getDefault().newWatchService();
 
         String webXmlLocation = getWebXmlLocation(webappDirLocation);
-        System.out.println(webXmlLocation);
 
         VRaptorServer vraptor = new VRaptorServer(webappDirLocation, webXmlLocation);
         vraptor.start();

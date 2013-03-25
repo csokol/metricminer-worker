@@ -6,3 +6,6 @@ logs
 *.class
 *.jar
 src/main/webapp/WEB-INF/classes/
+.classpath
+.project
+.settings/

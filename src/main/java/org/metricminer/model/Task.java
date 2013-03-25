@@ -61,18 +61,18 @@ public class Task implements Comparable {
     }
 
     public Task(Project project, String name,
-            RunnableTaskFactory runnableTaskFactory, Integer position) {
+            Class<? extends RunnableTaskFactory> runnableTaskFactoryClass, Integer position) {
         this();
         this.project = project;
         this.name = name;
-        this.runnableTaskFactoryClass = runnableTaskFactory.getClass();
+        this.runnableTaskFactoryClass = runnableTaskFactoryClass;
         this.submitDate = new GregorianCalendar();
         this.status = TaskStatus.QUEUED;
         this.position = position;
     }
 
     public Task(Project project, String name,
-            RunnableTaskFactory runnableTaskFactory, Integer position, Long id) {
+    		Class<? extends RunnableTaskFactory> runnableTaskFactory, Integer position, Long id) {
         this(project, name, runnableTaskFactory, position);
         this.id = id;
     }
