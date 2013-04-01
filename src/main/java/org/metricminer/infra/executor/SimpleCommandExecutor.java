@@ -19,23 +19,25 @@ public class SimpleCommandExecutor implements CommandExecutor {
 	}
 
 	public String execute(String command, String basePath) {
-		StringBuffer total = new StringBuffer();
 		String finalCommand = command;
 		Process proc;
 		try {
 			proc = Runtime.getRuntime().exec(finalCommand, getEnvTokens(),
 					new File(basePath));
-		} catch (IOException e) {
+			proc.waitFor();
+		} catch (IOException | InterruptedException e) {
 			throw new RuntimeException(e);
 		}
-
-		Scanner sc = new Scanner(proc.getInputStream());
-
-		while (sc.hasNextLine()) {
-			String nextLine = sc.nextLine();
-			total.append(nextLine + "\r\n");
+		if (proc.exitValue() != 0) {
+			Scanner scanner = new Scanner(proc.getErrorStream()).useDelimiter("$$");
+			String stderr = scanner.hasNext() ? scanner.next() : "";
+			throw new RuntimeException("command failed with exit value " + proc.exitValue() + " and stderr: " + stderr);
 		}
-		return total.toString();
+
+		Scanner scanner = new Scanner(proc.getInputStream()).useDelimiter("$$");
+		String stdout = scanner.hasNext() ? scanner.next() : "";
+		
+		return stdout;
 
 	}
 

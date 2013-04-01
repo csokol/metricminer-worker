@@ -33,20 +33,6 @@
         <param-value>UTF-8</param-value>
     </context-param>
 
-    <servlet>
-        <servlet-name>error</servlet-name>
-        <servlet-class>br.com.caelum.vraptor.errormail.ErrorLoggerServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>error</servlet-name>
-        <url-pattern>/error500</url-pattern>
-    </servlet-mapping>
-
-    <error-page>
-        <error-code>500</error-code>
-        <location>/error500</location>
-    </error-page>
-
     <error-page>
         <error-code>404</error-code>
         <location>/404.jsp</location>

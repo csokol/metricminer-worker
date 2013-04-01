@@ -38,7 +38,7 @@ public class ProjectDao {
 	}
 
 	public Project findProjectBy(Long id) {
-		return (Project) session.load(Project.class, id);
+		return (Project) session.get(Project.class, id);
 	}
 	
 	@SuppressWarnings("unchecked")

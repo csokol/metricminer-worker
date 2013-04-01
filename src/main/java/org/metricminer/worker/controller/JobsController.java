@@ -29,6 +29,10 @@ public class JobsController {
     @Post("/jobs/queue")
     public void enqueueTask(TaskRepresentation taskRepresentation) {
         Project project = projects.findProjectBy(taskRepresentation.projectId());
+        if (project == null) {
+        	result.notFound();
+        	return;
+        }
         Task task = new TaskBuilder().forProject(project)
                 .withName(taskRepresentation.name())
                 .withRunnableTaskFactoryClass(taskRepresentation.taskFactory())

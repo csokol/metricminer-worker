@@ -91,7 +91,7 @@ public class VRaptorServer {
     private static Server createServer() {
         String webPort = getPort();
         if (webPort == null || webPort.isEmpty()) {
-            webPort = "8080";
+            webPort = "8888";
         }
         Server server = new Server(Integer.valueOf(webPort));
         return server;

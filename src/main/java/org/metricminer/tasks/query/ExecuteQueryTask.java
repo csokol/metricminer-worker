@@ -28,7 +28,7 @@ public class ExecuteQueryTask implements RunnableTask {
     private static Logger logger = Logger.getLogger(ExecuteQueryTask.class);
 
     public ExecuteQueryTask(Task task, QueryExecutor queryExecutor,
-            QueryDao queryDao, MetricMinerConfigs config) {
+                            QueryDao queryDao, MetricMinerConfigs config) {
         this.queryDao = queryDao;
         this.config = config;
         this.queryId = Long
@@ -45,17 +45,17 @@ public class ExecuteQueryTask implements RunnableTask {
                 + query.getId() + "-" + query.getResultCount() + ".zip";
         FileOutputStream fileOutputStream = createFile(csvFileName);
         try {
-        	ZipOutputStream zipOutputStream = new ZipOutputStream(fileOutputStream);
-        	zipOutputStream.putNextEntry(new ZipEntry("result.csv"));
-	        queryExecutor.execute(query, zipOutputStream);
-	        zipOutputStream.closeEntry();
-	        zipOutputStream.close();
-	        fileOutputStream.close();
-	        QueryResult result = new QueryResult(csvFileName, query);
+            ZipOutputStream zipOutputStream = new ZipOutputStream(fileOutputStream);
+            zipOutputStream.putNextEntry(new ZipEntry("result.csv"));
+            queryExecutor.execute(query, zipOutputStream);
+            zipOutputStream.closeEntry();
+            zipOutputStream.close();
+            fileOutputStream.close();
+            QueryResult result = new QueryResult(csvFileName, query);
             query.addResult(result);
             result.success();
         } catch (Exception e) {
-        	QueryResult result = new QueryResult();
+            QueryResult result = new QueryResult();
 //            result.fail(ExceptionUtils.getStackTrace(e));
             result.fail(e.getMessage());
             query.addResult(result);
